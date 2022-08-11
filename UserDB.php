@@ -3,7 +3,7 @@ class UserDb{
 
     public function emailExists($email)
     {
-        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "230476Igor");
+        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "somepass");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("select count(*) as rowCount from Users where email=:email");
         $stmt->bindValue('email', $email, PDO::PARAM_STR);
@@ -13,7 +13,7 @@ class UserDb{
     }
     function addUser($user)
     {
-        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "230476Igor");
+        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "somepass");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("insert into Users (name, secondName,  email) values(:name,:secondName,:email)");
         $stmt->bindValue('name', $user->name);
@@ -24,7 +24,7 @@ class UserDb{
     }
     function yourInfo($column,$insertId)
     {
-        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "230476Igor");
+        $conn = new PDO("mysql:host=localhost;port=3306;dbname=registrationForm", "root", "somepass");
         $stmt = $conn->prepare("Select $column from Users where id= :insertId");
         $stmt->bindValue(':insertId', $insertId);
         $stmt->execute();
